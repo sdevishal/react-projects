@@ -1,0 +1,28 @@
+* {
+  font-family: Poppins, "sans-serif";
+}
+.accordion {
+  /* border: 2px solid #000; */
+  margin: 2rem;
+  border-radius: 6px;
+}
+.accordion-item {
+  border: 2px solid #ededed;
+  border-radius: 6px;
+}
+.accordion-item + .accordion-item {
+  margin-top: 1rem;
+}
+.title {
+  width: 100%;
+  text-align: left;
+  background-color: #ededed;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  /* border-radius: 6px; */
+  font-size: 1rem;
+}
+.content {
+  padding: 0.5rem;
+}
