@@ -18,24 +18,26 @@ const CountryCard = ({
             padding: "16px",
             maxWidth: "280px",
             textAlign: "center",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
         },
         countryFlag: {
             width: "100%",
+            height: "150px",
             borderRadius: "4px",
-            marginBottom: "12px"
+            marginBottom: "12px",
+            border: "1px solid #ddd"
         },
         title: {
             margin: "8px 0",
             fontSize: "1.2rem",
             opacity: "0.7",
-             textAlign:"left"
+            textAlign: "left"
         },
         text: {
             margin: "4px 0",
             fontSize: "0.9rem",
             opacity: "0.7",
-            textAlign:"left"
+            textAlign: "left"
         }
     };
 
