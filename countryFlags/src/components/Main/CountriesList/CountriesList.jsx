@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CountryCard from './CountryCard.jsx';
 
-const CountriesList = () => {
+const CountriesList = ({ query }) => {
     const style = {
         display: "flex",
         flexWrap: "wrap",
@@ -19,12 +19,19 @@ const CountriesList = () => {
             .then(res => res.json())
             .then(data => {
                 setCountriesData(data);
+
             });
     }, []);
 
+
+    // Filter countries based on query (case-insensitive)
+    const filteredCountries = countriesData.filter(country =>
+        country.name.common.toLowerCase().includes(query.toLowerCase())
+    );
+
     return (
-        <div className="countries-list" style={style}>
-            {countriesData.map(country => (
+        <div className="countries-container" style={style}>
+            {filteredCountries.map(country => (
 
                 <CountryCard
                     key={country.cca3}
@@ -41,7 +48,6 @@ const CountriesList = () => {
                 />
             ))
             }
-
         </div >
     );
 };

@@ -1,14 +1,9 @@
 import styles from './SearchFilter.module.css';
-import { countries } from '../CountriesList/countriesData';
 
-const SearchFilter = () => {
-    const findCountry = (e) => {
-        console.log(e.target.value);
-        console.log(countries)
-    };
+const SearchFilter = ({ setQuery }) => {
     return (
         <div className={styles.searchFilterContainer}>
-            <input type="text" onChange={findCountry} placeholder='Search country...' />
+            <input type="text" onChange={e => setQuery(e.target.value)} placeholder='Search country...' />
             <select name="" id="">
                 <option value="filter">Filter by Region</option>
                 <option value="Country_1">Country_1</option>
