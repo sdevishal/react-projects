@@ -30,8 +30,7 @@ const router = createBrowserRouter([
         // path: "country/:code",
         path: "country/:name",
         element: <CountryCardDetails />,
-      }
-
+      },
     ],
   },
 ]);

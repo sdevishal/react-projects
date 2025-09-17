@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 import { ShimmerCard } from "./Shimmer";
 
 const CountryDetail = () => {
-  let { name } = useParams(); // get country name from URL
+  const { name } = useParams(); // get country name from URL
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
-  name = name.replace(/_/g, " ");
+  const countryName = name.replace(/_/g, " "); // replace _ with space for working
 
-  console.log(`https://restcountries.com/v3.1/name/${name}?fullText=true`);
+  console.log(
+    `https://restcountries.com/v3.1/name/${countryName}?fullText=true`
+  );
 
   useEffect(() => {
-    fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
+    fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
       .then((res) => res.json())
       .then(([data]) => {
         setCountry(data);
@@ -23,7 +25,7 @@ const CountryDetail = () => {
       .finally(() => {
         setLoading(false); // Always runs
       });
-  }, [name]);
+  }, [countryName]);
 
   if (loading) return <ShimmerCard />;
   if (!country) return <p>Country not found.</p>;

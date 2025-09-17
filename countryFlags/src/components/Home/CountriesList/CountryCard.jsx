@@ -59,7 +59,6 @@ const CountryCardDetails = ({
       </style>
 
       <Link to={`/country/${slugify(name)}`}>
-        {/* <Link to={`/country/${name}`}> */}
         <div className="country-card">
           <img src={flag} alt={flagAlt} className="country-flag" />
           <h2 className="country-title">
