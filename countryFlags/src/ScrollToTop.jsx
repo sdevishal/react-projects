@@ -1,15 +1,17 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+    import { useEffect } from "react";
+    import { useLocation } from "react-router-dom";
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
+    export default function ScrollToTop() {
+      const { pathname } = useLocation();
 
-  useEffect(() => {
-    // give React a tick to render the new page
-    setTimeout(() => window.scrollTo({ top: 0, behavior: "auto" }), 0);
-  }, [pathname]);
+      useEffect(() => {
+        // This scrolls the entire document to the top
+        document.documentElement.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "instant", // or "smooth" for an animated scroll
+        });
+      }, [pathname]); // Re-run the effect whenever the pathname changes
 
-  return null;
-};
-
-export default ScrollToTop;
+      return null; // This component doesn't render any UI
+    }

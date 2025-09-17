@@ -28,7 +28,7 @@ const CountryCardDetails = ({
             border-radius: 8px;
             padding: 16px;
             max-width: 280px;
-            min-height:400px;
+            height: 100%;
             text-align: center;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
           }
@@ -58,7 +58,7 @@ const CountryCardDetails = ({
         `}
       </style>
 
-      <Link to={`/country/${slugify(name)}`}>
+      <Link to={`/${slugify(name)}`}>
         <div className="country-card">
           <img src={flag} alt={flagAlt} className="country-flag" />
           <h2 className="country-title">

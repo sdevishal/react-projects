@@ -27,8 +27,7 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        // path: "country/:code",
-        path: "country/:name",
+        path: "/:name",
         element: <CountryCardDetails />,
       },
     ],
