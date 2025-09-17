@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CountryCard from "./CountryCard.jsx";
-import Shimmer from "./Shimmer.jsx";
+import { ShimmerAllCards } from "./Shimmer.jsx";
 
 const CountriesList = ({ query }) => {
     const [countriesData, setCountriesData] = useState([]);
@@ -39,7 +39,7 @@ const CountriesList = ({ query }) => {
             </style>
 
             {loading === true ? (
-                <Shimmer />
+                <ShimmerAllCards />
             ) : (
                 <div className="countries-container">
                     {filteredCountries.map((country) => (
