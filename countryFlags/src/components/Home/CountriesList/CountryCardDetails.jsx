@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 import { ShimmerCard } from "./Shimmer";
 
 const CountryDetail = () => {
-  const { name } = useParams(); // get country name from URL
+  let { name } = useParams(); // get country name from URL
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
+  name = name.replace(/_/g, " ");
+
+  console.log(`https://restcountries.com/v3.1/name/${name}?fullText=true`);
 
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
       .then((res) => res.json())
       .then(([data]) => {
-        console.log(data);
         setCountry(data);
       })
       .catch((err) => {
@@ -21,7 +23,6 @@ const CountryDetail = () => {
       .finally(() => {
         setLoading(false); // Always runs
       });
-
   }, [name]);
 
   if (loading) return <ShimmerCard />;
@@ -32,7 +33,7 @@ const CountryDetail = () => {
       <style>
         {`
   .detail-container {
-    max-width: 800px;   
+    max-width: fit-content; 
     margin: 2rem auto;
     padding: 2rem;
     background: #f5f5f5;
@@ -46,27 +47,30 @@ const CountryDetail = () => {
   }
 
   .detail-flag {
-    width: 400px;
-    {/* height: 80%; */}
-    {/* border: 1px solid #ddd; */}
+    max-width: 350px;
+    width:100%;
     border-radius: 6px;
-    flex-shrink: 0;
-    {/* border: 2px solid red; */}
-  }
-
-  .detail-info {
-    {/* flex: 1; */}
-        {/* border: 2px solid red; */}
-
   }
 
   .detail-info h1 {
     margin-top: 0;
     margin-bottom: 1rem;
+    opacity: 0.8;
   }
 
   .detail-info p {
     margin: 0.5rem 0;
+    opacity: 0.8;
+
+  }
+
+  @media (max-width:768px){
+  .detail-container {
+  flex-direction: column; 
+  }
+  .detail-flag{
+  max-width:280px;
+  }
   }
 `}
       </style>

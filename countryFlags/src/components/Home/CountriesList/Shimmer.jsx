@@ -45,7 +45,7 @@ export const ShimmerAllCards = () => {
           box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
         .shimmer.flag { width: 100%; height: 150px; margin-bottom: 12px; }
-        .shimmer.title { height: 20px; width: 70%; margin: 8px auto; }
+        .shimmer.title { height: 20px; width: 70%; margin: 8px 0; }
         .shimmer.text { height: 14px; width: 100%; margin: 6px 0; }
       `}</style>
 

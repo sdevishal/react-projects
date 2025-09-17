@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const CountryCard = ({
+const CountryCardDetails = ({
   code3,
   name,
   officialName,
@@ -12,6 +12,13 @@ const CountryCard = ({
   population,
   languages,
 }) => {
+  function slugify(name) {
+    return name
+      .toLowerCase()
+      .replace(/ /g, "_") // replace spaces with -
+      .replace(/[^\w-]+/g, ""); // remove non-word chars
+  }
+
   return (
     <>
       <style>
@@ -51,7 +58,8 @@ const CountryCard = ({
         `}
       </style>
 
-      <Link to={`/country/${name.toLowerCase()}`}>
+      <Link to={`/country/${slugify(name)}`}>
+        {/* <Link to={`/country/${name}`}> */}
         <div className="country-card">
           <img src={flag} alt={flagAlt} className="country-flag" />
           <h2 className="country-title">
@@ -78,4 +86,4 @@ const CountryCard = ({
   );
 };
 
-export default CountryCard;
+export default CountryCardDetails;
