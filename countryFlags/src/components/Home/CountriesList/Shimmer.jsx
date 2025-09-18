@@ -45,12 +45,12 @@ export const ShimmerAllCards = () => {
           box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
         .shimmer.flag { width: 100%; height: 150px; margin-bottom: 12px; }
-        .shimmer.title { height: 20px; width: 70%; margin: 8px 0; }
-        .shimmer.text { height: 14px; width: 100%; margin: 6px 0; }
+        .shimmer.title { height: 20px; width: 70%; margin: 10px 0; }
+        .shimmer.text { height: 20px; width: 100%; margin: 10px 0; }
       `}</style>
 
       <div className="shimmer-container">
-        {[...Array(20)].map((_, i) => (
+        {Array.from({ length: 20 }).map((el, i) => (
           <div className="shimmer-card" key={i}>
             <div className="shimmer flag"></div>
             <div className="shimmer title"></div>
@@ -69,8 +69,9 @@ export const ShimmerCard = () => {
     <>
       <style>{`
         ${shimmerStyle}
-        .detail-shimmer {
-          max-width: 800px;
+        .shimmer-container {
+          {/* max-width: 800px; */}.
+          {/* width:100%; */}
           margin: 2rem auto;
           padding: 2rem;
           background: #f5f5f5;
@@ -80,13 +81,32 @@ export const ShimmerCard = () => {
           gap: 2rem;
           align-items: center;
         }
-        .shimmer.flag { width: 300px; height: 200px; flex-shrink: 0; }
-        .info {flex: 1;}
-        .shimmer.line { height: 16px; margin: 10px 0; }
+        .shimmer.flag { max-width: 300px; width:100%; height: 200px; flex-shrink: 0; }
+        .info {
+        flex: 1;
+        {/* border: 2px solid green; */}
+        min-width: 300px;
+        }
+        .shimmer.line { height: 24px; margin: 10px 0; }
         .shimmer.big { height: 24px; width: 60%; margin-bottom: 20px; }
+        @media (max-width: 768px){
+        .shimmer-container {
+        flex-direction: column;
+        width: fit-content;
+        }
+        }
+        @media(max-width:440px){
+        .shimmer-container{
+        width: 330px;
+        }
+        .shimmer.flag{
+        width: 280px;
+        }
+        }
+
       `}</style>
 
-      <div className="detail-shimmer">
+      <div className="shimmer-container">
         <div className="shimmer flag"></div>
         <div className="info">
           <div className="shimmer big"></div>

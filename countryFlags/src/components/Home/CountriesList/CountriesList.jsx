@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import CountryCard from "./CountryCard.jsx";
 import { ShimmerAllCards } from "./Shimmer.jsx";
 
-const CountriesList = ({ query, setCountryName }) => {
+const CountriesList = ({ query }) => {
   const [countriesData, setCountriesData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(
@@ -13,8 +12,6 @@ const CountriesList = ({ query, setCountryName }) => {
       .then((res) => res.json())
       .then((data) => {
         setCountriesData(data);
-        setCountryName(data);
-        setLoading(false);
       });
   }, []);
 
@@ -39,7 +36,7 @@ const CountriesList = ({ query, setCountryName }) => {
             `}
       </style>
 
-      {loading === true ? (
+      {!countriesData.length ? (
         <ShimmerAllCards />
       ) : (
         <div className="countries-container">

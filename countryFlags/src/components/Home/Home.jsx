@@ -4,12 +4,11 @@ import { useState } from "react";
 
 const Home = () => {
   const [query, setQuery] = useState("");
-  const [selectedValue, setSelectedValue] = useState("");
-  const [countryName, setCountryName] = useState([]);
+
   return (
     <div style={{ paddingInline: "1rem" }}>
-      <SearchFilter setQuery={setQuery} countryName={countryName} />
-      <CountriesList query={query} setCountryName={setCountryName} />
+      <SearchFilter setQuery={setQuery} />
+      <CountriesList query={query} />
     </div>
   );
 };
