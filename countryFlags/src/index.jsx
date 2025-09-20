@@ -6,7 +6,7 @@ import Error from "./Error.jsx";
 import Home from "./components/Home/Home.jsx";
 import AboutUs from "./components/About/AboutUs.jsx";
 import ContactUs from "./components/Contact/ContactUs.jsx";
-import CountryCardDetails from "./components/Home/CountriesList/CountryCardDetails.jsx";
+import CountryDetail from "./components/Home/CountriesList/CountryDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/:name",
-        element: <CountryCardDetails />,
+        element: <CountryDetail />,
       },
     ],
   },

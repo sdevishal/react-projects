@@ -15,7 +15,7 @@ const CountryCardDetails = ({
   function slugify(name) {
     return name
       .toLowerCase()
-      .replace(/ /g, "_") // replace spaces with -
+      .replace(/ /g, "_") // replace spaces with _
       .replace(/[^\w-]+/g, ""); // remove non-word chars
   }
 

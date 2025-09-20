@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Rubik, "sans-serif";
+}
+body {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.dark-mode {
+  background: #1f2d36;
+  color: white;
+}
