@@ -1,48 +1,59 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ShimmerCard } from "./Shimmer";
 import styles from "./CountryDetail.module.css";
 
 const CountryDetail = () => {
   const { name } = useParams();
+  const { state } = useLocation();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
   const countryName = name.replace(/_/g, " ");
 
+  function updateCountryData(data) {
+    setCountry({
+      name: data.name?.common || "Unknown",
+      officialName: data.name?.official || "Unknown",
+      capital: data.capital?.[0] || "N/A",
+      region: data.region || "N/A",
+      subregion: data.subregion || "N/A",
+      population: data.population?.toLocaleString() || "N/A",
+      flag: data.flags?.svg || "",
+      flagAlt: data.flags?.alt || data.name?.common || "Flag",
+      borders: [],
+      languages: data.languages
+        ? Object.values(data.languages).join(", ")
+        : "N/A",
+    });
+
+    if (!data.borders) {
+      data.borders = [];
+    }
+
+    Promise.all(
+      data.borders.map((border) => {
+        return fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+          .then((res) => res.json())
+          .then(([borderCountry]) => borderCountry.name.common);
+      })
+    ).then((borders) => {
+      setCountry((prevState) => ({ ...prevState, borders }));
+    });
+  }
+
   useEffect(() => {
+    setLoading(true);
+
+    if (state) {
+      updateCountryData(state);
+      setLoading(false);
+      return;
+    }
 
     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
       .then((res) => res.json())
       .then(([data]) => {
-        setCountry({
-          name: data.name?.common || "Unknown",
-          officialName: data.name?.official || "Unknown",
-          capital: data.capital?.[0] || "N/A",
-          region: data.region || "N/A",
-          subregion: data.subregion || "N/A",
-          population: data.population?.toLocaleString() || "N/A",
-          flag: data.flags?.svg || "",
-          flagAlt: data.flags?.alt || data.name?.common || "Flag",
-          borders: [],
-          languages: data.languages
-            ? Object.values(data.languages).join(", ")
-            : "N/A",
-        });
-
-        if (!data.borders) {
-          data.borders = [];
-        }
-
-        Promise.all(
-          data.borders.map((border) => {
-            return fetch(`https://restcountries.com/v3.1/alpha/${border}`)
-              .then((res) => res.json())
-              .then(([borderCountry]) => borderCountry.name.common);
-          })
-        ).then((borders) => {
-          console.log(borders);
-          setCountry((prevState) => ({ ...prevState, borders }));
-        });
+        updateCountryData(data);
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));

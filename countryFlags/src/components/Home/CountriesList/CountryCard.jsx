@@ -11,6 +11,7 @@ const CountryCardDetails = ({
   subregion,
   population,
   languages,
+  countryData
 }) => {
   function slugify(name) {
     return name
@@ -58,7 +59,7 @@ const CountryCardDetails = ({
         `}
       </style>
 
-      <Link to={`/${slugify(name)}`}>
+      <Link to={`/${slugify(name)}`} state={countryData}>
         <div className="country-card">
           <img src={flag} alt={flagAlt} className="country-flag" />
           <h2 className="country-title">

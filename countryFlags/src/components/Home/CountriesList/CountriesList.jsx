@@ -7,7 +7,7 @@ const CountriesList = ({ query }) => {
 
   useEffect(() => {
     fetch(
-      "https://restcountries.com/v3.1/all?fields=cca3,name,flags,capital,region,subregion,population,languages"
+      "https://restcountries.com/v3.1/all?fields=cca3,name,flags,capital,region,subregion,population,languages,borders"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -53,6 +53,7 @@ const CountriesList = ({ query }) => {
               subregion={country.subregion}
               population={country.population}
               languages={Object.values(country.languages || {}).join(", ")}
+              countryData={country}
             />
           ))}
         </div>
