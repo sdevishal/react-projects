@@ -1,41 +1,46 @@
-
 const Footer = () => {
-    return (
-        <>
-            <style>
-                {`
+  return (
+    <>
+      <style>
+        {`
           .footer {
-            background-color: #222;
-            color: #fff;
             text-align: center;
-            padding: 16px;
-            margin-top: 2rem;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-top: 1px solid var(--header-footer-border);
+            }               
+          .links {
+            margin-top: 0.5rem;
           }
-            .links{
-            margin-block: .5rem;
-            }
           .footer a {
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
             margin: 0 6px;
-          }
-
+          }                  
           .footer a:hover {
             text-decoration: underline;
           }
         `}
-            </style>
+      </style>
 
-            <footer className="footer">
-                <p>© 2025 MyWebsite. All rights reserved.</p>
-                <div className="links">
-                    <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a> |
-                    <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a> |
-                    <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-                </div>
-            </footer>
-        </>
-    );
+      <footer className="footer">
+        <p>CountryFlag © 2025. All rights reserved.</p>
+        <div className="links">
+          <a href="https://twitter.com" target="_blank" rel="noreferrer">
+            Twitter
+          </a>{" "}
+          |
+          <a href="https://github.com" target="_blank" rel="noreferrer">
+            GitHub
+          </a>{" "}
+          |
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+        </div>
+      </footer>
+    </>
+  );
 };
 
 export default Footer;

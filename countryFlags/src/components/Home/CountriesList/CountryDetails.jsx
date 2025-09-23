@@ -1,9 +1,9 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ShimmerCard } from "./Shimmer";
-import styles from "./CountryDetail.module.css";
+import styles from "./CountryDetails.module.css";
 
-const CountryDetail = () => {
+const CountryDetails = () => {
   const { name } = useParams();
   const { state } = useLocation();
   const [country, setCountry] = useState(null);
@@ -120,4 +120,4 @@ const CountryDetail = () => {
   );
 };
 
-export default CountryDetail;
+export default CountryDetails;

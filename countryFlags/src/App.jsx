@@ -6,12 +6,29 @@ import { ScrollRestoration } from "react-router-dom";
 const App = () => {
   return (
     <>
-      <ScrollRestoration />
-      <Header />
-      <main style={{ paddingInline: "2rem", minHeight: "100vh" }}>
-        <Outlet />
-      </main>
-      <Footer />
+      <style>
+        {`
+          .main{
+          background-color: var(--bg-primary);
+          color: var(--text-color);
+          padding: 2rem;
+          min-height: 100vh;
+          }
+          .main.dark{
+          background-color: var(--bg-secondary);
+          color: var(--text-color);
+          }
+          
+        `}
+      </style>
+      <div className="app">
+        <ScrollRestoration />
+        <Header />
+        <main className="main">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 };

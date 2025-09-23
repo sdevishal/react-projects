@@ -6,10 +6,22 @@ const Home = () => {
   const [query, setQuery] = useState("");
 
   return (
-    <div style={{ paddingInline: "1rem" }}>
-      <SearchFilter setQuery={setQuery} />
-      <CountriesList query={query} />
-    </div>
+    <>
+      <style>
+        {`
+        .Home{
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          max-width:1200px;
+          margin-inline:auto;          
+          }
+       `}
+      </style>
+      <div className="Home">
+        <SearchFilter setQuery={setQuery} />
+        <CountriesList query={query} />
+      </div>
+    </>
   );
 };
 

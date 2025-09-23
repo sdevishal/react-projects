@@ -3,7 +3,8 @@ import CountryCard from "./CountryCard.jsx";
 import { ShimmerAllCards } from "./Shimmer.jsx";
 
 const CountriesList = ({ query }) => {
-  const [countriesData, setCountriesData] = useState([]);
+  const [countriesData, setCountriesData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch(
@@ -12,13 +13,35 @@ const CountriesList = ({ query }) => {
       .then((res) => res.json())
       .then((data) => {
         setCountriesData(data);
+      })
+      .catch((err) => console.error("Failed to fetch countries:", err))
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
+
+  // Load Shimmer effect
+  if (isLoading) return <ShimmerAllCards />;
+  if (!countriesData) {
+    return (
+      <p style={{ color: "red", margin: "2rem auto", textAlign: "center" }}>
+        Country not found!
+      </p>
+    );
+  }
 
   // Filter countries based on query (case-insensitive)
   const filteredCountries = countriesData.filter((country) =>
     country.name.common.toLowerCase().includes(query.toLowerCase())
   );
+
+  if (filteredCountries.length === 0) {
+    return (
+      <p style={{ color: "red", margin: "2rem auto", textAlign: "center" }}>
+        Country not exists!
+      </p>
+    );
+  }
 
   return (
     <>
@@ -27,18 +50,14 @@ const CountriesList = ({ query }) => {
             .countries-container{
                 display: flex;
                 flex-wrap: wrap;
-                gap: 1.5rem 1rem;
-                justify-content: space-evenly;
-                margin-top: 2rem;
-                max-width: 1200px;
-                margin-inline: auto;
+                gap: 1.5rem;
+                justify-content: space-between;
+                margin-top: 1.5rem;
             }
             `}
       </style>
 
-      {!countriesData.length ? (
-        <ShimmerAllCards />
-      ) : (
+      {
         <div className="countries-container">
           {filteredCountries.map((country) => (
             <CountryCard
@@ -47,7 +66,7 @@ const CountriesList = ({ query }) => {
               name={country.name?.common}
               officialName={country.name?.official}
               flag={country.flags?.png}
-              flagAlt={`${country.flags?.alt} flag`}
+              flagAlt={country.flags?.alt || `${country.name?.common} flag`}
               capital={country.capital?.[0]}
               region={country.region}
               subregion={country.subregion}
@@ -57,7 +76,7 @@ const CountriesList = ({ query }) => {
             />
           ))}
         </div>
-      )}
+      }
     </>
   );
 };

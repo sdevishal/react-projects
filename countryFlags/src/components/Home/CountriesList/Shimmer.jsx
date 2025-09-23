@@ -50,7 +50,7 @@ export const ShimmerAllCards = () => {
       `}</style>
 
       <div className="shimmer-container">
-        {Array.from({ length: 20 }).map((el, i) => (
+        {Array.from({ length: 8 }).map((el, i) => (
           <div className="shimmer-card" key={i}>
             <div className="shimmer flag"></div>
             <div className="shimmer title"></div>
@@ -70,8 +70,6 @@ export const ShimmerCard = () => {
       <style>{`
         ${shimmerStyle}
         .shimmer-container {
-          {/* max-width: 800px; */}.
-          {/* width:100%; */}
           margin: 2rem auto;
           padding: 2rem;
           background: #f5f5f5;
