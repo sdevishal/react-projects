@@ -1,7 +1,6 @@
 const shimmerStyle = `
   .shimmer {
-  background: #e0e0e0;
-  border-radius: 4px;
+  background: #e0e0e0;  
   position: relative;
   overflow: hidden;
 }
@@ -17,7 +16,10 @@ const shimmerStyle = `
 }
 
   @keyframes shimmer {
-    100% {
+  0% {
+      left: 0;
+  }
+  100% {
       left: 100%;
     }
   }
@@ -35,28 +37,32 @@ export const ShimmerAllCards = () => {
           gap: 16px;
           max-width:1200px;
           margin-inline:auto;
+          margin-top: 1.5rem;
         }
         .shimmer-card {
           border: 1px solid #ddd;
           border-radius: 8px;
-          padding: 16px;
-          min-width: 280px;
-          min-height: 400px;
+          min-width: 270px;
+          min-height: 380px;
           box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
-        .shimmer.flag { width: 100%; height: 150px; margin-bottom: 12px; }
-        .shimmer.title { height: 20px; width: 70%; margin: 10px 0; }
-        .shimmer.text { height: 20px; width: 100%; margin: 10px 0; }
+        .shimmer.flag { width: 100%; height: 150px; margin-bottom: 12px; border-radius: 7px 7px 0px 0px ;}
+        .shimmer-info { padding: 16px; }
+        .shimmer.title { height: 20px; width: 70%; }
+        .shimmer.text { height: 20px; width: 100%; margin: 15px 0; }
       `}</style>
 
       <div className="shimmer-container">
         {Array.from({ length: 8 }).map((el, i) => (
           <div className="shimmer-card" key={i}>
             <div className="shimmer flag"></div>
-            <div className="shimmer title"></div>
-            <div className="shimmer text"></div>
-            <div className="shimmer text"></div>
-            <div className="shimmer text"></div>
+            <div className="shimmer-info">
+              <div className="shimmer title"></div>
+              <div className="shimmer text"></div>
+              <div className="shimmer text"></div>
+              <div className="shimmer text"></div>
+              <div className="shimmer text"></div>
+            </div>
           </div>
         ))}
       </div>

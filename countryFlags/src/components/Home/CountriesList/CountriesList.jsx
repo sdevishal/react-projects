@@ -3,7 +3,7 @@ import CountryCard from "./CountryCard.jsx";
 import { ShimmerAllCards } from "./Shimmer.jsx";
 
 const CountriesList = ({ query }) => {
-  const [countriesData, setCountriesData] = useState(null);
+  const [countriesData, setCountriesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -48,11 +48,16 @@ const CountriesList = ({ query }) => {
       <style>
         {`
             .countries-container{
+                margin-top: 1.5rem;
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1.5rem;
-                justify-content: space-between;
-                margin-top: 1.5rem;
+                justify-content: flex-start;
+            }
+            @media(max-width: 768px){
+            .countries-container{
+                justify-content: center;
+              }                
             }
             `}
       </style>

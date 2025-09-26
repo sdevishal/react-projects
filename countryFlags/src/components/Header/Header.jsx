@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { useTheme } from "../../hooks/useTheme";
 
 const Header = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useTheme();
 
   const toggleDarkMode = () => {
-    setIsDark(!isDark);
-    document.body.classList.toggle("dark");
-    localStorage.setItem("isDark", !isDark);
+    setIsDark((prev) => !prev);
   };
+
+  useEffect(() => {
+    localStorage.setItem("isDark", isDark);
+    document.body.classList.toggle("dark", isDark);
+  }, [isDark]);
 
   return (
     <>
@@ -36,16 +40,11 @@ const Header = () => {
             font-size: 1.5rem;
           }
 
-          ion-icon{
+          .theme-icon{
             font-size: 1.5rem;
-            color: #141414;
             cursor: pointer;
           }
 
-          body.dark ion-icon{
-          background-color: var(--header-footer-bg);
-          color: var(--text-color);
-          }
         `}
       </style>
 
@@ -53,6 +52,7 @@ const Header = () => {
         <div className="header-content">
           <h2>Country Flag</h2>
           <ion-icon
+            className="theme-icon"
             name={isDark ? "sunny" : "moon"}
             onClick={toggleDarkMode}
           ></ion-icon>

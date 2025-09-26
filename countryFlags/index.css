@@ -12,6 +12,8 @@
   --header-footer-bg: #f5f5f5;
   --header-footer-border: #cbd6e6ff;
   --card-bg: #f5f5f5;
+  --theme-icon-color: #1a1a1a;
+  --theme-icon-bg: #f5f5f5;
 }
 
 /* Dark mode (applied only if <body class="dark"> exists) */
@@ -23,6 +25,8 @@ body.dark {
   --card-bg: #212426;
   --dark-bg-color: #18191b;
   --dark-bg-text: #ededed;
+  --theme-icon-color: #ededed;
+  --theme-icon-bg: #212426;
 }
 
 /* Components use the variables */
@@ -37,22 +41,7 @@ footer {
   color: var(--text-color);
 }
 
-/* transition: background 0.2s ease, color 0.2s ease; */
-
-input,
-select {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 1px solid #ccc;
-  font-size: 16px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 300px;
-}
-
-body.dark input,
-body.dark select {
-  background-color: var(--dark-bg-c/olor);
-  color: var(--dark-text-color);
-  border: 1px solid #555;
+.theme-icon {
+  background-color: var(--theme-icon-bg);
+  color: var(--theme-icon-color);
 }

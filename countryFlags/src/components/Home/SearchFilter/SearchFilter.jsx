@@ -7,6 +7,7 @@ const SearchFilter = ({ setQuery }) => {
         type="text"
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search country..."
+        className=""
       />
       <select>
         <option value="filter">--Filter by Region--</option>
