@@ -1,6 +1,5 @@
 .countryDetail {
   max-width: 1200px;
-  /* margin: 2rem auto; */
   padding: 2rem;
   border-radius: 8px;
   font-family: Arial, sans-serif;
@@ -19,7 +18,8 @@
 }
 
 .flagImage {
-  width: auto;
+  width: 100%;
+  width: 300px;
   height: 250px;
   border-radius: 8px;
 }
@@ -31,10 +31,6 @@
 
 .countryInfo p {
   margin: 0.5rem 0;
-}
-.borderSection {
-  margin-top: 0.5rem;
-  opacity: 0.8;
 }
 
 .borderList {
@@ -76,6 +72,7 @@
   }
 
   .flagImage {
-    max-width: 280px;
+    max-width: 250px;
+    max-height: 200px;
   }
 }

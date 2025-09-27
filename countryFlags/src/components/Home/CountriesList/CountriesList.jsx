@@ -31,8 +31,10 @@ const CountriesList = ({ query }) => {
   }
 
   // Filter countries based on query (case-insensitive)
-  const filteredCountries = countriesData.filter((country) =>
-    country.name.common.toLowerCase().includes(query.toLowerCase())
+  const filteredCountries = countriesData.filter(
+    (country) =>
+      country.name.common.toLowerCase().includes(query.toLowerCase()) ||
+      country.region.toLowerCase().includes(query.toLowerCase())
   );
 
   if (filteredCountries.length === 0) {

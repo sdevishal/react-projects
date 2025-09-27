@@ -9,11 +9,13 @@ const SearchFilter = ({ setQuery }) => {
         placeholder="Search country..."
         className=""
       />
-      <select>
-        <option value="filter">--Filter by Region--</option>
-        <option value="filter">Country_1</option>
-        <option value="filter">Country_2</option>
-        <option value="filter">Country_3</option>
+      <select onChange={(e) => setQuery(e.target.value)}>
+        <option hidden>--Filter by Region--</option>
+        <option value="Africa">Africa</option>
+        <option value="Americas">Americas</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="Oceania">Oceania</option>
       </select>
     </div>
   );
