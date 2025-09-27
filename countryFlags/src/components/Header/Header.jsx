@@ -18,9 +18,6 @@ const Header = () => {
       <style>
         {`
           header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 1rem 2rem;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             transition: background-color 0.3s ease;
@@ -28,11 +25,11 @@ const Header = () => {
           }
 
           .header-content {
+            max-width: 1200px;
+            margin-inline: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
-            max-width: 1200px;
           }
 
           .header-content h2 {

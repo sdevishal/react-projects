@@ -24,7 +24,7 @@ const Main = styled.main`
 `;
 
 const App = () => {
-  
+
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem("isDark");
     return stored ? JSON.parse(stored) : false;

@@ -63,13 +63,15 @@ const CountryDetails = () => {
   if (!country) return <p>Country not found.</p>;
 
   return (
-    <div className={styles.detailContainer}>
-      <img
-        src={country.flag}
-        alt={country.flagAlt}
-        className={styles.detailFlag}
-      />
-      <div className={styles.detailInfo}>
+    <div className={styles.countryDetail}>
+      <div className={styles.flagWrapper}>
+        <img
+          src={country.flag}
+          alt={country.flagAlt}
+          className={styles.flagImage}
+        />
+      </div>
+      <div className={styles.countryInfo}>
         <h1>{country.name}</h1>
         <p>
           <b>Official Name: </b>
@@ -104,12 +106,12 @@ const CountryDetails = () => {
         )}
 
         {country.borders.length > 0 && (
-          <div className={styles.borders}>
+          <div className={styles.borderSection}>
             <b>Borders:</b>
-            <div className={styles.bordersList}>
+            <div className={styles.borderList}>
               {country.borders.map((border) => (
                 <Link key={border} to={`/${border}`}>
-                  <span className={styles.borderPill}>{border}</span>
+                  <span className={styles.borderItem}>{border}</span>
                 </Link>
               ))}
             </div>

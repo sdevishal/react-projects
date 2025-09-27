@@ -10,10 +10,10 @@ const Home = () => {
       <style>
         {`
         .Home{
+          max-width:1200px;
+          margin-inline:auto;
           background-color: var(--bg-color);
           color: var(--text-color);
-          max-width:1200px;
-          margin-inline:auto;          
           }
        `}
       </style>

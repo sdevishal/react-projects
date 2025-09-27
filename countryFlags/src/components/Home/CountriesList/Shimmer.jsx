@@ -12,17 +12,7 @@ const shimmerStyle = `
   height: 100%;
   width: 100px;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  animation: shimmer 2s infinite; /* slower, subtle */
-}
-
-  @keyframes shimmer {
-  0% {
-      left: 0;
-  }
-  100% {
-      left: 100%;
-    }
-  }
+ }
 `;
 
 export const ShimmerAllCards = () => {
@@ -48,8 +38,8 @@ export const ShimmerAllCards = () => {
         }
         .shimmer.flag { width: 100%; height: 150px; margin-bottom: 12px; border-radius: 7px 7px 0px 0px ;}
         .shimmer-info { padding: 16px; }
-        .shimmer.title { height: 20px; width: 70%; }
-        .shimmer.text { height: 20px; width: 100%; margin: 15px 0; }
+        .shimmer.title { height: 20px; width: 70%; border-radius: 4px; }
+        .shimmer.text { height: 20px; width: 100%; margin: 15px 0; border-radius: 4px; }
       `}</style>
 
       <div className="shimmer-container">

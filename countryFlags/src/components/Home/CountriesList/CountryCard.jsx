@@ -26,17 +26,14 @@ const CountryCard = ({
         {`
           .country-card {
             border-radius: 8px;
-            max-width: 280px;
-            height: 100%;
-            text-align: center;
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             background-color: var(--card-bg);
+            height: 100%;
           }
           .country-flag img {
             width: 100%;
             height: 150px;
             border-radius: 4px 4px 0px 0px;
-            {/* border: 1px solid #ddd; */}
           }
           .country-info{
           padding: 1rem;  
@@ -44,13 +41,11 @@ const CountryCard = ({
           .country-title {
             margin: 8px 0;
             font-size: 1.2rem;
-            {/* opacity: 0.7; */}
             text-align: left;
           }
           .country-text {
             margin: 4px 0;
             font-size: 0.9rem;
-            {/* opacity: 0.7; */}
             text-align: left;
           }
           a {
@@ -63,7 +58,7 @@ const CountryCard = ({
       <Link to={`/${slugify(name)}`} state={countryData}>
         <div className="country-card">
           <div className="country-flag">
-            <img src={flag} alt={flagAlt}/>
+            <img src={flag} alt={flagAlt} />
           </div>
           <div className="country-info">
             <h2 className="country-title">

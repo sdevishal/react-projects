@@ -48,17 +48,12 @@ const CountriesList = ({ query }) => {
       <style>
         {`
             .countries-container{
-                margin-top: 1.5rem;
-                display: flex;
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 1.5rem;
-                justify-content: flex-start;
-            }
-            @media(max-width: 768px){
-            .countries-container{
-                justify-content: center;
-              }                
-            }
+                align-items: stretch; 
+                margin-top: 1.5rem; 
+            }           
             `}
       </style>
 
