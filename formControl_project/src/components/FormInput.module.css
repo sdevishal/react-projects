@@ -1,0 +1,27 @@
+.input-group + .input-group,
+button {
+  margin-block: 1rem;
+}
+.input-group label {
+  margin-bottom: 4px;
+  display: block;
+  font-size: 0.8rem;
+}
+.input-group input,
+.input-group select,
+.input-group button {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0.4rem;
+  outline: none;
+}
+button {
+  background-color: rgb(236, 236, 236);
+  cursor: pointer;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0.4rem;
+  outline: none;
+}
