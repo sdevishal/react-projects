@@ -1,36 +1,23 @@
-// import { useEffect, useRef, useState } from "react";
-import { useRef } from "react";
+import { useState } from "react";
 import style from "./ExpenseForm.module.css";
 
 const ExpenseForm = ({ setExpenses }) => {
-  const titleRef = useRef();
-  const categoryRef = useRef();
-  const amountRef = useRef();
-  // const [expense, setExpense] = useState({
-  //   title: "",
-  //   category: "",
-  //   amount: "",
-  // });
+  const [expense, setExpense] = useState({
+    title: "",
+    category: "",
+    amount: "",
+  });
   function handleSubmit(e) {
     e.preventDefault();
-    // setExpenses((prevState) => [
-    //   ...prevState,
-    //   { ...expense, id: crypto.randomUUID() },
-    // ]);
-    // setExpense({
-    //   title: "",
-    //   category: "",
-    //   amount: "",
-    // });
-    const expense = {
-      title: titleRef.current.value,
-      category: categoryRef.current.value,
-      amount: amountRef.current.value,
-    };
     setExpenses((prevState) => [
       ...prevState,
       { ...expense, id: crypto.randomUUID() },
     ]);
+    setExpense({
+      title: "",
+      category: "",
+      amount: "",
+    });
   }
 
   return (
@@ -42,14 +29,13 @@ const ExpenseForm = ({ setExpenses }) => {
             type="text"
             name="title"
             id="title"
-            // value={expense.title}
-            // onChange={(e) =>
-            //   setExpense((prevState) => ({
-            //     ...prevState,
-            //     title: e.target.value,
-            //   }))
-            // }
-            ref={titleRef}
+            value={expense.title}
+            onChange={(e) =>
+              setExpense((prevState) => ({
+                ...prevState,
+                title: e.target.value,
+              }))
+            }
           />
         </div>
         <div className={style["input-group"]}>
@@ -57,14 +43,13 @@ const ExpenseForm = ({ setExpenses }) => {
           <select
             name="category"
             id="category"
-            // value={expense.category}
-            // onChange={(e) =>
-            //   setExpense((prevState) => ({
-            //     ...prevState,
-            //     category: e.target.value,
-            //   }))
-            // }
-            ref={categoryRef}
+            value={expense.category}
+            onChange={(e) =>
+              setExpense((prevState) => ({
+                ...prevState,
+                category: e.target.value,
+              }))
+            }
           >
             <option hidden>Select Category</option>
             <option value="Grocery">Grocery</option>
@@ -80,14 +65,13 @@ const ExpenseForm = ({ setExpenses }) => {
             type="text"
             name="amount"
             id="amount"
-            // value={expense.amount}
-            // onChange={(e) =>
-            //   setExpense((prevState) => ({
-            //     ...prevState,
-            //     amount: e.target.value,
-            //   }))
-            // }
-            ref={amountRef}
+            value={expense.amount}
+            onChange={(e) =>
+              setExpense((prevState) => ({
+                ...prevState,
+                amount: e.target.value,
+              }))
+            }
           />
         </div>
         <button type="submit">Add</button>
