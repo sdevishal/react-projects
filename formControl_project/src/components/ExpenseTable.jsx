@@ -1,10 +1,6 @@
 import style from "./ExpenseTable.module.css";
 
 const ExpenseTable = ({ expenses }) => {
-  if (expenses.length > 0) {
-    console.log(expenses);
-  }
-
   return (
     <div className={style["form-data"]}>
       <table>
@@ -16,16 +12,11 @@ const ExpenseTable = ({ expenses }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Milk</td>
-            <td>Grocery</td>
-            <td>₹40</td>
-          </tr>
           {expenses.map((expense, id) => (
             <tr key={id}>
-              <td>{expense.Title}</td>
-              <td>{expense.Category}</td>
-              <td>{expense.Amount}</td>
+              <td>{expense.title}</td>
+              <td>{expense.category}</td>
+              <td>{expense.amount}</td>
             </tr>
           ))}
         </tbody>

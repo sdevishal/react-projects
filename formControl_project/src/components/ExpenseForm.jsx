@@ -1,34 +1,55 @@
+import { useState } from "react";
 import style from "./ExpenseForm.module.css";
 
 const ExpenseForm = ({ setExpenses }) => {
+  const [expense, setExpense] = useState({
+    title: "",
+    category: "",
+    amount: "",
+  });
   function handleSubmit(e) {
     e.preventDefault();
     setExpenses((prevState) => [
       ...prevState,
-      { ...getFormData(e), id: crypto.randomUUID() },
+      { ...expense, id: crypto.randomUUID() },
     ]);
-     setTimeout(() => e.target.reset(), 0);
+    setExpense({
+      title: "",
+      category: "",
+      amount: "",
+    });
   }
-
-  function getFormData(e) {
-    const formData = new FormData(e.target);
-    const data = {};
-    for (const [key, value] of formData.entries()) {
-      data[key] = value;
-    }
-    return data;
-  }
-
   return (
     <div className="form-input">
       <form onSubmit={handleSubmit}>
         <div className={style["input-group"]}>
           <label>Title</label>
-          <input type="text" name="Title" id="" />
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={expense.title}
+            onChange={(e) =>
+              setExpense((prevState) => ({
+                ...prevState,
+                title: e.target.value,
+              }))
+            }
+          />
         </div>
         <div className={style["input-group"]}>
           <label>Category</label>
-          <select name="Category" id="category">
+          <select
+            name="category"
+            id="category"
+            value={expense.category}
+            onChange={(e) =>
+              setExpense((prevState) => ({
+                ...prevState,
+                category: e.target.value,
+              }))
+            }
+          >
             <option hidden>Select Category</option>
             <option value="Grocery">Grocery</option>
             <option value="Clothes">Clothes</option>
@@ -39,7 +60,18 @@ const ExpenseForm = ({ setExpenses }) => {
         </div>
         <div className={style["input-group"]}>
           <label>Amount</label>
-          <input type="text" name="Amount" id="" />
+          <input
+            type="text"
+            name="amount"
+            id="amount"
+            value={expense.amount}
+            onChange={(e) =>
+              setExpense((prevState) => ({
+                ...prevState,
+                amount: e.target.value,
+              }))
+            }
+          />
         </div>
         <button type="submit">Add</button>
       </form>
