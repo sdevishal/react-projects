@@ -1,11 +1,18 @@
-.input-group + .input-group,
-button {
-  margin-block: 1rem;
+.input-group {
+  position: relative;
+  margin-bottom: 1.2rem;
 }
 .input-group label {
   margin-bottom: 4px;
   display: block;
   font-size: 0.8rem;
+  margin-left: 4px;
+}
+.input-group .errMsg {
+  color: red;
+  font-size: 0.7rem;
+  margin-left: 4px;
+  position: absolute;
 }
 .input-group input,
 .input-group select,
@@ -24,4 +31,5 @@ button {
   width: 100%;
   padding: 0.4rem;
   outline: none;
+  margin-top: 0.5rem;
 }
