@@ -2,52 +2,85 @@ import { useState } from "react";
 import { Input, Select } from "./CustomFormField";
 
 const ExpenseForm = ({ setExpenses }) => {
-  const [expense, setExpense] = useState({
+  // Form state (tracks all input values)
+  const [formData, setFormData] = useState({
     title: "",
     category: "",
     amount: "",
   });
-  const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setExpense((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    setErrors({});
+  // Stores validation errors for each field
+  const [formErrors, setFormErrors] = useState({});
+
+  // 📜 Validation rules for each field
+  const validationRules = {
+    title: {
+      required: "Title is required",
+      minLength: { value: 3, message: "Title must be at least 3 characters" },
+    },
+    category: {
+      required: "Please select a category",
+    },
+    amount: {
+      required: "Amount is required",
+      pattern: { value: /^[0-9]+$/, message: "Amount must be a number" },
+    },
   };
 
+  // Update form state when input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Remove previous errors as user types
+    setFormErrors({});
+  };
+
+  // Validate the form and return any errors
+  const getValidationErrors = (data) => {
+    const errors = {};
+
+    Object.entries(data).forEach(([fieldName, fieldValue]) => {
+      const rules = validationRules[fieldName];
+
+      if (rules.required && !fieldValue) {
+        errors[fieldName] = rules.required;
+      }
+      if (rules.minLength && fieldValue.length < rules.minLength.value) {
+        errors[fieldName] = rules.minLength.message;
+      }
+      if (rules.pattern && !rules.pattern.value.test(fieldValue)) {
+        errors[fieldName] = rules.pattern.message;
+      }
+    });
+
+    return errors;
+  };
+
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validateResult = validateForm(expense);
-    if (Object.keys(validateResult).length) return;
 
-    setExpenses((prevState) => [
-      ...prevState,
-      { ...expense, id: crypto.randomUUID() },
+    const validationErrors = getValidationErrors(formData);
+    setFormErrors(validationErrors);
+
+    // Stop if validation failed
+    if (Object.keys(validationErrors).length > 0) return;
+
+    // Add new expense
+    setExpenses((prev) => [
+      ...prev,
+      { ...formData, id: crypto.randomUUID() },
     ]);
-    setExpense({
+
+    // Reset form after submit
+    setFormData({
       title: "",
       category: "",
       amount: "",
     });
-  };
-
-  const validateForm = (formData) => {
-    const errMsg = {};
-    if (!formData.title) {
-      errMsg.title = "Title is required";
-    }
-    if (!formData.category) {
-      errMsg.category = "Please Select a Category";
-    }
-    if (!formData.amount) {
-      errMsg.amount = "Amount is required";
-    }
-
-    setErrors(errMsg);
-    return errMsg;
   };
 
   return (
@@ -57,27 +90,27 @@ const ExpenseForm = ({ setExpenses }) => {
           label="Title"
           id="title"
           name="title"
-          value={expense.title}
-          onChange={handleChange}
-          error={errors.title}
+          value={formData.title}
+          onChange={handleInputChange}
+          error={formErrors.title}
         />
         <Select
           label="Category"
           id="category"
           name="category"
-          value={expense.category}
-          onChange={handleChange}
-          error={errors.category}
-          options={["Grocery", "Clothes", "Bills", "Education", "Medicine"]}
+          value={formData.category}
+          onChange={handleInputChange}
+          error={formErrors.category}
           defaultOption="Select a Category"
+          options={["Grocery", "Clothes", "Bills", "Education", "Medicine"]}
         />
         <Input
           label="Amount"
           id="amount"
           name="amount"
-          value={expense.amount}
-          onChange={handleChange}
-          error={errors.amount}
+          value={formData.amount}
+          onChange={handleInputChange}
+          error={formErrors.amount}
         />
         <button type="submit">Add</button>
       </form>
