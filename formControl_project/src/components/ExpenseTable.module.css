@@ -1,6 +1,13 @@
 .form-data {
   margin-top: 0.5rem;
 }
+.form-data select {
+  border: none;
+  background-color: inherit;
+  font-weight: bold;
+  font-size: .8rem;
+  outline: none;
+}
 table {
   border-collapse: collapse;
   width: 100%;
@@ -12,4 +19,5 @@ th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-size: .8rem;
 }
