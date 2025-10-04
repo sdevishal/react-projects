@@ -1,9 +1,9 @@
-import { useState } from "react";
+import useFilter from "../hooks/useFilter";
 import style from "./ExpenseTable.module.css";
 
 const ExpenseTable = ({ expenses }) => {
-  console.log(expenses);
-  const [query, setQuery] = useState("All");
+  const [filteredData, selected, setSelected] = useFilter(expenses, "All");
+
   const categories = [
     "All",
     "Grocery",
@@ -13,13 +13,6 @@ const ExpenseTable = ({ expenses }) => {
     "Medicine",
   ];
 
-  const filteredData =
-    query === "All"
-      ? expenses
-      : expenses.filter(
-          (expense) => expense.category.toLowerCase() === query.toLowerCase()
-        );
-
   return (
     <div className={style["form-data"]}>
       <table>
@@ -27,7 +20,10 @@ const ExpenseTable = ({ expenses }) => {
           <tr>
             <th>Title</th>
             <th>
-              <select value={query} onChange={(e) => setQuery(e.target.value)}>
+              <select
+                value={selected}
+                onChange={(e) => setSelected(e.target.value)}
+              >
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>
                     {cat}
