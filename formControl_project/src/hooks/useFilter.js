@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-function useFilter(data, initialSelected) {
+function  useFilter(data, initialSelected) {
   const [selected, setSelected] = useState(initialSelected);
 
   const filteredData = useMemo(() => {

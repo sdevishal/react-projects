@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { Input, Select } from "./CustomFormField";
 
-const ExpenseForm = ({ setExpenses }) => {
-  // Form state (tracks all input values)
-  const [formData, setFormData] = useState({
-    title: "",
-    category: "",
-    amount: "",
-  });
-
+const ExpenseForm = ({
+  setExpenses,
+  expense,
+  setExpense,
+  isEditingRow,
+  setIsEditingRow,
+  editingRowId,
+}) => {
   // Stores validation errors for each field
   const [formErrors, setFormErrors] = useState({});
 
-  // 📜 Validation rules for each field
+  // Validation rules for each field
   const validationRules = {
     title: {
       required: "Title is required",
@@ -30,7 +30,7 @@ const ExpenseForm = ({ setExpenses }) => {
   // Update form state when input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setExpense((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -63,20 +63,40 @@ const ExpenseForm = ({ setExpenses }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validationErrors = getValidationErrors(formData);
+    const validationErrors = getValidationErrors(expense);
     setFormErrors(validationErrors);
 
     // Stop if validation failed
     if (Object.keys(validationErrors).length > 0) return;
 
+    // edit formTable row
+    if (isEditingRow) {
+      // debugger;
+      setExpenses((prevExp) => {
+        return prevExp.map((exp) => {
+          if (exp.id === editingRowId) {
+            return { ...expense, id: editingRowId };
+          }
+          return exp; 
+        });
+      });
+
+      // reset form field
+      setExpense({
+        title: "",
+        category: "",
+        amount: "",
+      });
+      // reset to switch to Add btn from save btn
+      setIsEditingRow(false);
+      return;
+    }
+
     // Add new expense
-    setExpenses((prev) => [
-      ...prev,
-      { ...formData, id: crypto.randomUUID() },
-    ]);
+    setExpenses((prev) => [...prev, { ...expense, id: crypto.randomUUID() }]);
 
     // Reset form after submit
-    setFormData({
+    setExpense({
       title: "",
       category: "",
       amount: "",
@@ -90,7 +110,7 @@ const ExpenseForm = ({ setExpenses }) => {
           label="Title"
           id="title"
           name="title"
-          value={formData.title}
+          value={expense.title}
           onChange={handleInputChange}
           error={formErrors.title}
         />
@@ -98,7 +118,7 @@ const ExpenseForm = ({ setExpenses }) => {
           label="Category"
           id="category"
           name="category"
-          value={formData.category}
+          value={expense.category}
           onChange={handleInputChange}
           error={formErrors.category}
           defaultOption="Select a Category"
@@ -108,11 +128,11 @@ const ExpenseForm = ({ setExpenses }) => {
           label="Amount"
           id="amount"
           name="amount"
-          value={formData.amount}
+          value={expense.amount}
           onChange={handleInputChange}
           error={formErrors.amount}
         />
-        <button type="submit">Add</button>
+        <button type="submit">{isEditingRow ? "Save" : "Add"}</button>
       </form>
     </div>
   );

@@ -32,4 +32,8 @@ button {
   padding: 0.4rem;
   outline: none;
   margin-top: 0.5rem;
+  transition: .1s ease-in-out;
+}
+button:hover{
+  background-color: #ddd;
 }
