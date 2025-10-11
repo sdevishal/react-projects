@@ -12,7 +12,10 @@ const ExpenseTable = ({
 }) => {
   const [filteredData, selected, setSelected] = useFilter(expenses, "All");
   const [contextMenu, setContextMenu] = useState({});
-  const total = expenses.reduce((acc, elem) => acc + Number(elem.amount), 0);
+  const total = filteredData.reduce(
+    (acc, elem) => acc + Number(elem.amount),
+    0
+  );
   const categories = [
     "All",
     "Grocery",
@@ -76,7 +79,29 @@ const ExpenseTable = ({
                   ))}
                 </select>
               </th>
-              <th>Amount</th>
+              <th>
+                <div className={style["amount"]}>
+                  <span>Amount</span>
+                  <i
+                    className="fa-solid fa-arrow-up-short-wide"
+                    onClick={() => {
+                      const sortedArr = [...filteredData].sort(
+                        (a, b) => a.amount - b.amount
+                      );
+                      setExpenses(sortedArr);
+                    }}
+                  ></i>
+                  <i
+                    className="fa-solid fa-arrow-up-wide-short"
+                    onClick={() => {
+                      const sortedArr = [...filteredData].sort(
+                        (a, b) => b.amount - a.amount
+                      );
+                      setExpenses(sortedArr);
+                    }}
+                  ></i>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>

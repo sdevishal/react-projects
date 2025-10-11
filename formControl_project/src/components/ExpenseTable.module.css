@@ -1,23 +1,52 @@
 .form-data {
   margin-top: 0.5rem;
-}
-.form-data select {
-  border: none;
-  background-color: inherit;
-  font-weight: bold;
-  font-size: .8rem;
-  outline: none;
+  width: 100%;
 }
 table {
   border-collapse: collapse;
   width: 100%;
+  width: fit-content;
   table-layout: fixed;
 }
+table select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 0.8rem;
+  background-color: inherit;
+}
 
-td,
-th {
+th,
+td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-  font-size: .8rem;
+  font-size: 0.8rem;
+}
+thead tr > th:nth-child(3) {
+  width: 40%;
+}
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+i {
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+i:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  thead tr > th:nth-child(3) {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  thead tr > th:nth-child(3) {
+    width: 150%;
+  }
 }

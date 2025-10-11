@@ -71,13 +71,12 @@ const ExpenseForm = ({
 
     // edit formTable row
     if (isEditingRow) {
-      // debugger;
       setExpenses((prevExp) => {
         return prevExp.map((exp) => {
           if (exp.id === editingRowId) {
             return { ...expense, id: editingRowId };
           }
-          return exp; 
+          return exp;
         });
       });
 
