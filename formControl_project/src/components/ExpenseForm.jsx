@@ -92,7 +92,7 @@ const ExpenseForm = ({
     }
 
     // Add new expense
-    setExpenses((prev) => [...prev, { ...expense, id: crypto.randomUUID() }]);
+    setExpenses((prev) => [...prev, { ...expense, id: crypto.randomUUID(), originalIndex: prev.length }]);
 
     // Reset form after submit
     setExpense({
