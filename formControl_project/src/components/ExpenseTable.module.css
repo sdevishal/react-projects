@@ -58,6 +58,10 @@ i {
 }
 
 @media (max-width: 768px) {
+  table th,
+  table td {
+    width: 100%;
+  }
   thead tr > th:nth-child(3) {
     width: 100%;
   }

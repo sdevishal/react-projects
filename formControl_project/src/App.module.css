@@ -23,7 +23,4 @@ body {
   .form-group {
     flex-direction: column;
   }
-  .form-group * {
-    width: 100%;
-  }
 }

@@ -1,10 +1,11 @@
-import style from "./App.module.css";
+import { useState } from "react";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseTable from "./components/ExpenseTable";
-import { useState } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
+import style from "./App.module.css";
 
 const App = () => {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useLocalStorage("expenses", []);
   const [expense, setExpense] = useState({
     title: "",
     category: "",

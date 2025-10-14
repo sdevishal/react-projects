@@ -103,7 +103,7 @@ const ExpenseForm = ({
   };
 
   return (
-    <div className="form-input">
+    <div className="form-input" style={{width: '100%'}}>
       <form onSubmit={handleSubmit}>
         <Input
           label="Title"

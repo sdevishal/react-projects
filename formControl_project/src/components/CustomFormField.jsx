@@ -1,4 +1,4 @@
-import style from "./ExpenseForm.module.css";
+import style from "./CustomFormField.module.css";
 
 export const Input = ({ label, name, id, value, onChange, error }) => {
   return (
