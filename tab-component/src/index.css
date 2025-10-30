@@ -1,0 +1,32 @@
+* {
+  font-family: sans-serif;
+}
+.tabs-container {
+  border: 1px solid #ddd;
+  margin: 4px;
+  border-radius: 8px;
+  padding: 6px;
+}
+.tab-panel {
+  display: flex;
+  justify-content: space-evenly;
+}
+.tab-btn {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  padding: 2px 6px;
+  /* border-radius: 4px; */
+  transition: background 0.2s ease-in-out;
+}
+.tab-underline {
+  border-bottom: 1px solid #888888;
+}
+.tab-data {
+  margin-block: 5px;
+}
+.active {
+  background-color: #ddd;
+  border-bottom: 2px solid darkblue;
+  font-size: bold;
+}
