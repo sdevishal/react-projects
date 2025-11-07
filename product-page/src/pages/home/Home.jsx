@@ -1,17 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import style from "./Home.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../../features/productsSlice";
 
 const Home = () => {
-  const [data, setData] = useState(null);
+  const { items, loading, error } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => setData(data.products));
-  }, []);
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (loading)
+    return (
+      <h1 style={{ textAlign: "center", marginBlock: "1rem" }}>Loading...</h1>
+    );
+  if (error)
+    return (
+      <h1 style={{ textAlign: "center", marginBlock: "1rem" }}>
+        {error || "|| There is somethimmng wrong!"}
+      </h1>
+    );
+
   return (
     <div className={style.container}>
       <div className={style.cardsContainer}>
-        {data?.map((product) => (
+        {items?.map((product) => (
           <div key={product.id} className={style.productCard}>
             <img src={product.thumbnail} alt={product.title} />
             <h1>{product.title}</h1>

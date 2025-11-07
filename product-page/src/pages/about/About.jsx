@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { fetchUser } from "../../features/github-user-data/githubUserSlice";
+import { fetchUser } from "../../features/githubUserSlice";
 import styles from "./About.module.css";
 import { useDispatch, useSelector } from "react-redux";
 

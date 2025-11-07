@@ -1,11 +1,13 @@
 import { Outlet } from "react-router";
-import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
 import Footer from "./components/Footer/Footer";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const { isMenuOpen } = useSelector((state) => state.menu);
   return (
     <div
-      className="app-container"
+      className={!isMenuOpen ? "overflow-hidden" : ""}
       style={{
         display: "flex",
         flexDirection: "column",
