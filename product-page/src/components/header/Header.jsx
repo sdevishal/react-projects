@@ -1,31 +1,24 @@
-import { useSelector, useDispatch } from "react-redux";
 import NavBar from "../navbar/NavBar";
 import Searchbar from "../searchbar/Searchbar";
-import { toggleMenu } from "../../features/menuSlice";
+import Theme from "../theme/Theme";
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const { isMenuOpen } = useSelector((state) => state.menu);
-
   return (
-    <header className="bg-white sticky top-0 border-b-2 border-gray-200 h-12 z-50 relative">
-      <div className="flex items-center justify-between max-w-6xl mx-auto px-6 h-full relative">
-        <div className="text-2xl text-black">
+    <header
+      className={`bg-white dark:bg-[#111827] sticky top-0 border-b-2 border-gray-200 py-2`}
+    >
+      <div className="flex items-center justify-between max-w-6xl mx-auto px-6 relative">
+        <div className={`text-xl dark:text-white`}>
           <i className="bi bi-rocket-takeoff-fill"></i>
         </div>
-        <div className="flex items-start gap-8">
+        <div className="order-3 md:order-2">
           <NavBar />
+        </div>
+        <div className="flex items-center gap-8 order-2 md:order-3">
           <Searchbar />
+          <Theme />
         </div>
       </div>
-
-      {/* Overlay */}
-      {isMenuOpen && (
-        <div
-          onClick={() => dispatch(toggleMenu())}
-          className="absolute left-0 w-full h-[100vh] bg-black/70 z-20 md:hidden"
-        ></div>
-      )}
     </header>
   );
 };

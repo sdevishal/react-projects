@@ -1,4 +1,3 @@
-
 export default function Blog() {
   const posts = [
     {
@@ -8,7 +7,7 @@ export default function Blog() {
       excerpt:
         "Learn the basics of building user interfaces with React — from components and props to hooks and state management.",
       image:
-        "https://images.unsplash.com/photo-1581276879432-15a19d654956?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870",
     },
     {
       id: 2,
@@ -17,7 +16,7 @@ export default function Blog() {
       excerpt:
         "Discover how utility-first styling with Tailwind CSS can speed up your front-end workflow and make your UI consistent.",
       image:
-        "https://images.unsplash.com/photo-1608115392559-0f33f37b4216?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800",
     },
     {
       id: 3,
@@ -31,9 +30,9 @@ export default function Blog() {
   ];
 
   return (
-    <section className="bg-gray-50 py-12 px-6 min-h-screen">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-10">
+    <section className="bg-color py-12 px-6">
+      <div className=" max-w-5xl mx-auto">
+        <h2 className="text-center mb-10">
           Latest Blog Posts
         </h2>
 
@@ -41,7 +40,7 @@ export default function Blog() {
           {posts.map((post) => (
             <article
               key={post.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              className="card"
             >
               <img
                 src={post.image}
@@ -49,11 +48,15 @@ export default function Blog() {
                 className="h-48 w-full object-cover"
               />
               <div className="p-5">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                <h3>
                   {post.title}
                 </h3>
-                <p className="text-sm text-gray-500 mb-3">{post.date}</p>
-                <p className="text-gray-600 text-sm mb-4">{post.excerpt}</p>
+                <p className=" mb-3">
+                  {post.date}
+                </p>
+                <p className="mb-4">
+                  {post.excerpt}
+                </p>
                 <button className="text-blue-500 font-medium hover:underline">
                   Read more →
                 </button>

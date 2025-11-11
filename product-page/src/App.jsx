@@ -1,13 +1,22 @@
 import { Outlet } from "react-router";
 import Header from "./components/header/Header";
 import Footer from "./components/Footer/Footer";
-import { useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const App = () => {
-  const { isMenuOpen } = useSelector((state) => state.menu);
+  const { isDark } = useSelector((state) => state.theme);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
   return (
     <div
-      className={!isMenuOpen ? "overflow-hidden" : ""}
       style={{
         display: "flex",
         flexDirection: "column",

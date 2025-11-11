@@ -1,9 +1,0 @@
-.theme-icon i {
-  padding: 8px 8px 8px 10px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.theme-icon i:hover {
-  background-color: #000;
-  color: #fff;
-}
