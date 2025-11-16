@@ -1,12 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setQuery } from "../../features/searchSlice";
+
 const Searchbar = () => {
+  const { query } = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+
   return (
-    <div className=" border-gray-300 dark:border-gray-600 bg-white dark:bg-[#27272A] text-gray-800 dark:text-gray-100 rounded-full focus:ring-2 focus:ring-blue-400 px-0 py-0.5 border-2  focus-within:border-blue-400 ">
+    <div className="flex items-center w-full max-w-sm mx-auto border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#27272A] text-gray-800 dark:text-gray-100 rounded-full focus-within:border-blue-400 transition-all duration-200 ">
       <input
         type="text"
-        placeholder="Search here.."
-        className="py-0 pl-4 border-none focus:outline-none"
+        value={query}
+        placeholder="Search products..."
+        className="grow bg-transparent focus:outline-none px-2 text-sm md:text-base"
+        onChange={(e) => dispatch(setQuery(e.target.value))}
       />
-      <i className="bi bi-search cursor-pointer w-1 py-1 px-1.5 rounded-full hover:bg-gray-200"></i>
+      <button
+        type="button"
+        className="px-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
+      >
+        <i className="bi bi-search text-lg"></i>
+      </button>
     </div>
   );
 };

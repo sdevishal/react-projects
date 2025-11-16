@@ -1,7 +1,13 @@
+import { useSelector } from "react-redux";
 import { useGetProductsQuery } from "../api/productsApi";
 
 const Home = () => {
   const { data, error, isLoading, isSuccess, isError } = useGetProductsQuery();
+  const { query } = useSelector((state) => state.search);
+
+  const productsData = !query
+    ? data
+    : data?.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()));
 
   // 🌀 Loading State
   if (isLoading)
@@ -31,15 +37,15 @@ const Home = () => {
     );
 
   return (
-    <div className="p-4 bg-color">
+    <div className="bg-color">
       {/* ---------- PRODUCT GRID ---------- */}
       {isSuccess && (
         <div
           className="max-w-6xl mx-auto
                    grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))]
-                   gap-4"
+                   gap-4 p-6"
         >
-          {data?.map((product) => (
+          {productsData?.map((product) => (
             <div
               key={product.id}
               className="group bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-800 overflow-hidden p-4 flex flex-col"
@@ -49,13 +55,13 @@ const Home = () => {
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="object-contain w-35 h-30 group-hover:scale-105 transition-transform duration-300"
+                  className="object-contain w-35 h-30"
                 />
               </div>
 
               {/* 🧾 Product Details */}
               <div className="mt-3 flex flex-col grow">
-                <h2 className="text-lg font-semibold leading-tight text-gray-800 dark:text-gray-100 line-clamp-2">
+                <h2 className="text-base  font-semibold leading-tight text-gray-800 dark:text-gray-100 line-clamp-2">
                   {product.title}
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 capitalize">
@@ -66,13 +72,13 @@ const Home = () => {
                   <span className="text-lg font-bold text-blue-600 dark:text-blue-400">
                     ${product.price}
                   </span>
-                  <span className="text-sm text-yellow-500 font-medium">
-                    ⭐ {product.rating.rate}
+                  <span className="text-sm bg-green-500 rounded-full text-gray-100 px-2 py-0.5 font-medium">
+                    {product.rating.rate} &#9733;
                   </span>
                 </div>
 
                 {product.description && (
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 line-clamp-3">
+                  <p className="text-sm leading-tight text-gray-500 dark:text-gray-300 mt-2 line-clamp-3">
                     {product.description}
                   </p>
                 )}

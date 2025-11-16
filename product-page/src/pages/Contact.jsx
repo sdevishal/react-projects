@@ -1,8 +1,9 @@
-const inputClasses = 'w-full border border-gray-300 py-1 px-2 dark:border-gray-600 bg-white dark:bg-[#27272A] text-gray-800 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none'
+const inputClasses =
+  "w-full border border-gray-300 py-1 px-2 dark:border-gray-600 bg-white dark:bg-[#27272A] text-gray-800 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none";
 
 export default function Contact() {
   return (
-    <section className=" bg-color flex flex-col items-center justify-center min-h-screen px-6">
+    <section className="flex items-center justify-center">
       <div className="card w-full max-w-sm px-6 py-10">
         <h2 className=" mb-6 text-center">Contact Us</h2>
 
@@ -10,7 +11,11 @@ export default function Contact() {
           {/* Name */}
           <div>
             <label>Name</label>
-            <input type="text" className={inputClasses} placeholder="Your name" />
+            <input
+              type="text"
+              className={inputClasses}
+              placeholder="Your name"
+            />
           </div>
 
           {/* Email */}

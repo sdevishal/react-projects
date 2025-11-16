@@ -30,8 +30,8 @@ export default function Blog() {
   ];
 
   return (
-    <section className="bg-color py-12 px-6">
-      <div className=" max-w-5xl mx-auto">
+    <section>
+      <div className="max-w-5xl mx-auto">
         <h2 className="text-center mb-10">
           Latest Blog Posts
         </h2>

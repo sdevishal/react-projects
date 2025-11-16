@@ -14,7 +14,7 @@ const Header = () => {
         <div className="order-3 md:order-2">
           <NavBar />
         </div>
-        <div className="flex items-center gap-8 order-2 md:order-3">
+        <div className="flex items-center gap-1 ml-4 order-2 md:order-3">
           <Searchbar />
           <Theme />
         </div>

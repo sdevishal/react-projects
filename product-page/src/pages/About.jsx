@@ -32,7 +32,7 @@ const About = () => {
     );
 
   return (
-    <section className="bg-color flex flex-col items-center justify-center min-h-screen p-6">
+    <section className="flex items-center justify-center">
       {isSuccess && (
         <div
           className="max-w-xs mx-auto p-6
