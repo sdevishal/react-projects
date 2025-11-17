@@ -7,6 +7,7 @@ import { RouterProvider } from "react-router/dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { lazy } from "react";
+import Loader from "./components/ui/loader/Loader.jsx";
 const Home = lazy(() => import("./pages/Home"));
 const Blog = lazy(() => import("./pages/Blog"));
 const About = lazy(() => import("./pages/About"));
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <Suspense fallback={"Loading..."}>
+      <Suspense fallback={<Loader loadingMsg="Loading..." />}>
         <RouterProvider router={router} />
       </Suspense>
     </Provider>

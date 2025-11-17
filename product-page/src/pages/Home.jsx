@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useGetProductsQuery } from "../api/productsApi";
+import Loader from "../components/ui/loader/Loader";
 
 const Home = () => {
   const { data, error, isLoading, isSuccess, isError } = useGetProductsQuery();
@@ -7,15 +8,7 @@ const Home = () => {
   const list = data ?? []; // to avoid undefined issue
 
   // 🌀 Loading State
-  if (isLoading)
-    return (
-      <div className="flex flex-col items-center justify-center py-10">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-        <p className="text-gray-700 dark:text-gray-300 text-base font-medium">
-          Loading products...
-        </p>
-      </div>
-    );
+  if (isLoading) return <Loader loadingMsg="Loading products..." />;
 
   // ⚠️ Error State
   if (isError)
