@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../../features/menuSlice";
+import { toggleMenu } from "../../../features/menuSlice";
 
 const NavBar = () => {
   const dispatch = useDispatch();

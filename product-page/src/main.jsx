@@ -1,12 +1,16 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import App from "./App.jsx";
+import "./index.css";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import { Home, Blog, About, Contact } from "./pages/pages.js";
-import { store } from "./store/store";
 import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { lazy } from "react";
+const Home = lazy(() => import("./pages/Home"));
+const Blog = lazy(() => import("./pages/Blog"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
 
 const router = createBrowserRouter([
   {
@@ -24,7 +28,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <Suspense fallback={"Loading..."}>
+        <RouterProvider router={router} />
+      </Suspense>
     </Provider>
   </StrictMode>
 );

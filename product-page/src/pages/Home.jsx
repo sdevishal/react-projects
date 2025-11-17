@@ -4,10 +4,7 @@ import { useGetProductsQuery } from "../api/productsApi";
 const Home = () => {
   const { data, error, isLoading, isSuccess, isError } = useGetProductsQuery();
   const { query } = useSelector((state) => state.search);
-
-  const productsData = !query
-    ? data
-    : data?.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()));
+  const list = data ?? []; // to avoid undefined issue
 
   // 🌀 Loading State
   if (isLoading)
@@ -36,14 +33,18 @@ const Home = () => {
       </div>
     );
 
+  const productsData = !query
+    ? list
+    : list?.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()));
+
   return (
-    <div className="bg-color">
+    <div>
       {/* ---------- PRODUCT GRID ---------- */}
       {isSuccess && (
         <div
           className="max-w-6xl mx-auto
                    grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))]
-                   gap-4 p-6"
+                   gap-4"
         >
           {productsData?.map((product) => (
             <div
@@ -51,11 +52,12 @@ const Home = () => {
               className="group bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-800 overflow-hidden p-4 flex flex-col"
             >
               {/* 🖼️ Product Image */}
-              <div className="w-full h-35 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden">
+              <div className="w-full h-32 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="object-contain w-35 h-30"
+                  className="object-contain w-32 h-30"
+                  loading="lazy"
                 />
               </div>
 

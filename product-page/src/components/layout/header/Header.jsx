@@ -1,11 +1,11 @@
 import NavBar from "../navbar/NavBar";
-import Searchbar from "../searchbar/Searchbar";
-import Theme from "../theme/Theme";
+import Searchbar from "../../ui/search-bar/SearchBar";
+import Theme from "../../utility/theme/Theme";
 
 const Header = () => {
   return (
     <header
-      className={`bg-white dark:bg-[#111827] sticky top-0 border-b-2 border-gray-200 py-2`}
+      className={`bg-white w-full dark:bg-[#111827] sticky top-0 border-b-2 border-gray-200 py-2`}
     >
       <div className="flex items-center justify-between max-w-6xl mx-auto px-6 relative">
         <div className={`text-xl dark:text-white`}>
